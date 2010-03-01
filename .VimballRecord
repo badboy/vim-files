@@ -1,0 +1,2 @@
+snippy_plugin.vba: call delete('/home/badboy/.vim/plugin/snippetsEmu.vim')|call delete('/home/badboy/.vim/doc/snippets_emu.txt')
+markdown-1.1.0.vba: call delete('/home/badboy/.vim/ftdetect/markdown.vim')|call delete('/home/badboy/.vim/snippets/markdown.snippets')|call delete('/home/badboy/.vim/syntax/markdown.vim')

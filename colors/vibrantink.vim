@@ -1,8 +1,8 @@
 " Vim color scheme
 "
 " Name:         vibrantink.vim
-" Maintainer:   Jo Vermeulen <jo.vermeulen@gmail.com> 
-" Last Change:  30 Jul 2007 
+" Maintainer:   Jo Vermeulen <jo.vermeulen@gmail.com>
+" Last Change:  30 Jul 2007
 " License:      public domain
 " Version:      1.2
 "
@@ -34,7 +34,7 @@ if has("gui_running")
   highlight Normal                    guifg=#E6E1DC   guibg=#2B2B2B
   highlight Cursor                    guifg=#000000   guibg=#FFFFFF
   "highlight CursorLine               guibg=#323300
- 
+
   highlight Comment                   guifg=#BC9458   gui=italic
   highlight Constant                  guifg=#6D9CBE
   highlight Define                    guifg=#CC7833
@@ -55,7 +55,7 @@ if has("gui_running")
 
   highlight DiffAdd                   guifg=#E6E1DC   guibg=#144212
   highlight DiffDelete                guifg=#E6E1DC   guibg=#660000
-  
+
   highlight rubyBlockParameter        guifg=#FFFFFF
   highlight rubyClass                 guifg=#FFFFFF
   highlight rubyConstant              guifg=#DA4939
@@ -65,30 +65,34 @@ if has("gui_running")
   highlight rubyPredefinedConstant    guifg=#DA4939
   highlight rubyPseudoVariable        guifg=#FFC66D
   highlight rubyStringDelimiter       guifg=#A5C261
-  
+
   highlight xmlTag                    guifg=#E8BF6A
   highlight xmlTagName                guifg=#E8BF6A
   highlight xmlEndTag                 guifg=#E8BF6A
 else
     set t_Co=256
     highlight Normal ctermfg=White ctermbg=234
-    highlight Keyword ctermfg=202 
-    highlight Define ctermfg=202 
+    highlight Keyword ctermfg=202
+    highlight Define ctermfg=202
     highlight Comment ctermfg=98
-    highlight Type ctermfg=White 
-    highlight rubySymbol ctermfg=66 
-    highlight Identifier ctermfg=White 
-    highlight rubyStringDelimiter ctermfg=82 
-    highlight rubyInterpolation ctermfg=White 
-    highlight rubyPseudoVariable ctermfg=66 
-    highlight Constant ctermfg=228 
-    highlight Function ctermfg=220 
-    highlight Include ctermfg=220 
+    highlight Type ctermfg=White
+    highlight rubySymbol ctermfg=66
+    highlight Identifier ctermfg=White
+    highlight rubyStringDelimiter ctermfg=82
+    highlight rubyInterpolation ctermfg=White
+    highlight rubyPseudoVariable ctermfg=66
+    highlight Constant ctermfg=228
+    highlight Function ctermfg=220
+    highlight Include ctermfg=220
     highlight Statement ctermfg=202
-    highlight String ctermfg=82 
-    highlight Search ctermbg=White 
+    highlight String ctermfg=82
+    highlight Search ctermbg=White
     highlight CursorLine cterm=NONE ctermbg=235
     highlight Search term=standout ctermfg=14 ctermbg=242
 
     highlight LineNr ctermfg=11 ctermbg=236
+
+    "Invisible character colors
+    highlight NonText ctermfg=238
+    highlight SpecialKey ctermfg=238
 endif

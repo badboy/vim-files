@@ -45,7 +45,7 @@ au BufNewFile,BufRead *.erb,*.rhtml			set filetype=eruby
 au BufRead,BufNewFile *.ru set filetype=ruby
 
 "" ruby files
-au FileType ruby,eruby set omnifunc=rubycomplete#Complete
+au FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_rails = 1
 au FileType ruby,eruby call UseRubyIndent()

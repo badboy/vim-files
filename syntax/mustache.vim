@@ -1,0 +1,1 @@
+/home/badboy/code/github/defunkt/mustache/contrib/mustache.vim

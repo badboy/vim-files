@@ -104,7 +104,7 @@ map <F8> <ESC>ggg?G``
 map <F9> :TlistToggle <CR>
 map <F10> :tabnew <CR>
 map <F12> :NERDTreeToggle<CR>
-map <leader>t :FuzzyFinderTextMate<CR>
+map <leader>t :FufFile<CR>
 
 " Easy split window navigation
 " use ALT+ArrowKeys to switch split windows

@@ -9,11 +9,20 @@ set smartcase
 set ruler                " show me where the cursor is
 set rulerformat=%l/%L(%p%%),%c " a better ruler
 "set hlsearch
+set visualbell
+set noerrorbells
+set t_vb=
 
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+
+" swap file directory
+set directory^=~/.vim/swap
+
+" don't store .viminfo in $HOME
+set viminfo+=n~/.vim/viminfo
 
 " enable display of invisible whitespace
 " by default
@@ -90,6 +99,8 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+" enable :W
+command W w
 " disable highlights of last search
 imap <F2> <C-O><F2>
 map <silent><F2> :nohlsearch<CR>

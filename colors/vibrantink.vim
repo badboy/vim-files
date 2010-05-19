@@ -89,6 +89,7 @@ else
     highlight Search ctermbg=White
     highlight CursorLine cterm=NONE ctermbg=235
     highlight Search term=standout ctermfg=14 ctermbg=242
+    highlight htmlItalic ctermfg=14
 
     highlight LineNr ctermfg=11 ctermbg=236
 

@@ -18,6 +18,13 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 
+" instead of :lcd %:p:h
+" to change directories upon opening a file
+"set autochdir
+
+" set wildmenu on
+set wmnu
+
 " swap file directory
 set directory^=~/.vim/swap
 

@@ -55,6 +55,7 @@ syntax region mkdLinkTitle matchgroup=mkdDelimiter start=+'+     end=+'+  contai
 syntax region mkdLinkTitle matchgroup=mkdDelimiter start=+(+     end=+)+  contained
 
 " Define Markdown groups
+syntax match  mkdNewSlide  /^!SLIDE\s\?.*$/
 syntax match  mkdLineContinue ".$" contained
 syntax match  mkdRule      /^\s*\*\s\{0,1}\*\s\{0,1}\*$/
 syntax match  mkdRule      /^\s*-\s\{0,1}-\s\{0,1}-$/
@@ -95,6 +96,8 @@ HtmlHiLink mkdID            Identifier
 HtmlHiLink mkdLinkDef       mkdID
 HtmlHiLink mkdLinkDefTarget mkdURL
 HtmlHiLink mkdLinkTitle     htmlString
+
+HtmlHiLink mkdNewSlide      htmlString
 
 HtmlHiLink mkdDelimiter     Delimiter
 

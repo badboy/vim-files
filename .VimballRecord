@@ -1,3 +1,4 @@
 snippy_plugin.vba: call delete('/home/badboy/.vim/plugin/snippetsEmu.vim')|call delete('/home/badboy/.vim/doc/snippets_emu.txt')
 markdown-1.1.0.vba: call delete('/home/badboy/.vim/ftdetect/markdown.vim')|call delete('/home/badboy/.vim/snippets/markdown.snippets')|call delete('/home/badboy/.vim/syntax/markdown.vim')
 manpageview.vba: call delete('/home/badboy/.vim/plugin/manpageviewPlugin.vim')|call delete('/home/badboy/.vim/autoload/manpageview.vim')|call delete('/home/badboy/.vim/syntax/man.vim')|call delete('/home/badboy/.vim/syntax/mankey.vim')|call delete('/home/badboy/.vim/syntax/info.vim')|call delete('/home/badboy/.vim/syntax/manphp.vim')|call delete('/home/badboy/.vim/doc/manpageview.txt')
+getscript.vba: call delete('/home/badboy/.vim/plugin/getscriptPlugin.vim')|call delete('/home/badboy/.vim/autoload/getscript.vim')|call delete('/home/badboy/.vim/GetLatest/GetLatestVimScripts.dist')|call delete('/home/badboy/.vim/doc/pi_getscript.txt')

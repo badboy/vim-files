@@ -478,7 +478,10 @@ function! s:ChangeVals(changed)
   " We use replaceVal instead of tagsubsitution as otherwise the command
   " result will be passed to subsequent tags
   let s:replaceVal = replaceVal
+  let line = line('.')
+  let col = col('.')
   call s:MakeChanges()
+  call cursor(line, col)
   unlet s:CHANGED_VAL
 endfunction
 " }}}

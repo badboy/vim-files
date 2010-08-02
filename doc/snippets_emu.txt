@@ -332,6 +332,7 @@ Panos Laganakos - Python snippets
 Alex Pounds - Django snippets
 Chris Lasher - Python snippets
 knipknap - Python snippets
+James Widman - C snippets
 
 ==============================================================================
 SNIPPETSEMU KNOWN BUGS                  		   *snippets_emu-bugs*

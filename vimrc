@@ -71,7 +71,7 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.rb,*.erl,*.tex :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml :call <SID>StripTrailingWhitespaces()
 
 "" C files
 au FileType c let $MANSECT="3,2,7,5,1,8"

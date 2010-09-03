@@ -47,7 +47,7 @@ colorscheme vibrantink
 let g:gist_clip_command = 'xclip -selection clipboard'
 " open browser!
 let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'firefox %URL% &'
+let g:gist_browser_command = 'choose_browser.sh %URL% &'
 
 syntax on " Enable syntax highlighting
 filetype on " Enable filetype detection

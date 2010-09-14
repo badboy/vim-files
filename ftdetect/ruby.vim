@@ -28,6 +28,9 @@ endfunction
 " Ruby
 au BufNewFile,BufRead *.rb,*.rbw,*.gem,*.gemspec	set filetype=ruby
 
+" God files
+au BufNewFile,BufRead *.god 	set filetype=ruby
+
 " Ruby on Rails
 au BufNewFile,BufRead *.builder,*.rxml,*.rjs		set filetype=ruby
 

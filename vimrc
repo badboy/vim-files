@@ -1,6 +1,9 @@
 set nocompatible " We're running Vim, not Vi!
 set title
 
+" always show the status bar
+set laststatus=2
+
 set shell=/bin/zsh
 set nu
 set formatoptions-=o

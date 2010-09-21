@@ -1,6 +1,22 @@
 set nocompatible " We're running Vim, not Vi!
 set title
 
+" Use pathogen to easily modify the runtime path to include all
+" plugins under the ~/.vim/bundle directory
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
+" hide buffers instead of closing them
+set hidden
+
+set nowrap " don't wrap lines
+
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class
+
+set pastetoggle=<F2>
+
 " always show the status bar
 set laststatus=2
 
@@ -87,13 +103,11 @@ au FileType c set expandtab
 "au FileType tex nnoremap Y :w<Enter>:!rake && xpdf %<.pdf<Enter>
 au FileType tex nnoremap Y :w<CR>:!rake<CR>
 
-"" markdown files
-"au BufRead,BufNewFile *.markdown   setfiletype markdown
-
 "" erlang files
 au FileType erlang setlocal foldmethod=manual
 
 "" PKGBUILD files
+"" needs cleanup, maybe own file?
 au BufEnter PKGBUILD nested imap <F6>  <C-O>mt<C-O>gg<C-O>/^[
             \t]*md5sums=/<CR><C-O>0<C-O>vf(%d<C-O>dd<C-O>k<C-O>:r!makepkg -g 2>/dev/null<CR><C-O>:nohlsearch<CR><C-O>`t|
                               \ map <silent><F6> mtgg/^[
@@ -110,29 +124,34 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
 " enable :W
-command W w
+command! W w
+
 " disable highlights of last search
-imap <F2> <C-O><F2>
-map <silent><F2> :nohlsearch<CR>
+"imap <F2> <C-O><F2>
+"map <silent><F2> :nohlsearch<CR>
+nmap <silent> ,/ :nohlsearch<CR>
+
 " simple switch for cursor{line,column}
 imap <F4> <C-O><F4>
 imap <F5> <C-O><F5>
 map <silent><F4> :set invcursorline<CR>
 map <silent><F5> :set invcursorcolumn<CR>
-" apply rot13 for people snooping over shoulder, good fun
-map <F8> <ESC>ggg?G``
 
-map <F9> :TlistToggle <CR>
+" apply rot13 for people snooping over shoulder, good fun
+map ,8 <ESC>ggg?G``
+
+map <F9>  :TlistToggle <CR>
 map <F10> :tabnew <CR>
 map <F12> :NERDTreeToggle<CR>
-map <leader>t :FufFile<CR>
 
 " Easy split window navigation
 " use ALT+ArrowKeys to switch split windows
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Up>    :wincmd k<CR>
+nmap <silent> <A-Down>  :wincmd j<CR>
+nmap <silent> <A-Left>  :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+cmap w!! w !sudo tee % > /dev/null
 " use C-[hjkl] instead
 "map <C-h> <C-w>h
 "map <C-j> <C-w>j

@@ -6,6 +6,8 @@ set title
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
+let mapleader = ","
+
 " hide buffers instead of closing them
 set hidden
 

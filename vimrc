@@ -11,7 +11,7 @@ let mapleader = ","
 " hide buffers instead of closing them
 set hidden
 
-set nowrap " don't wrap lines
+set wrap " wrap lines
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
@@ -27,7 +27,8 @@ set nu
 set formatoptions-=o
 set ignorecase
 set smartcase
-set ruler                " show me where the cursor is
+set gdefault                   " applies substitutions globally on lines (like /g)
+set ruler                      " show me where the cursor is
 set rulerformat=%l/%L(%p%%),%c " a better ruler
 "set hlsearch
 set visualbell
@@ -53,7 +54,6 @@ set directory^=~/.vim/swap
 set viminfo+=n~/.vim/viminfo
 
 " enable display of invisible whitespace
-" by default
 set list
 " toggle invisible whitespace display
 nmap <leader>l :set list!<CR>
@@ -70,11 +70,11 @@ let g:gist_clip_command = 'xclip -selection clipboard'
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'choose_browser.sh %URL% &'
 
-syntax on " Enable syntax highlighting
-filetype on " Enable filetype detection
+syntax on          " Enable syntax highlighting
+filetype on        " Enable filetype detection
 filetype indent on " Enable filetype-specific indenting
 filetype plugin on " Enable filetype-specific plugins
-compiler ruby " Enable compiler support for ruby
+compiler ruby      " Enable compiler support for ruby
 
 " autocmd
 "" delete trailing whitespace on save
@@ -125,13 +125,19 @@ function! InsertTabWrapper()
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 
+" fix Vim’s horribly broken default regex “handling”
+nnoremap / /\v
+vnoremap / /\v
+
+nnoremap <leader>a :Ack
+
 " enable :W
 command! W w
 
 " disable highlights of last search
 "imap <F2> <C-O><F2>
 "map <silent><F2> :nohlsearch<CR>
-nmap <silent> ,/ :nohlsearch<CR>
+nmap <silent> <leader><space> :nohlsearch<CR>
 
 " simple switch for cursor{line,column}
 imap <F4> <C-O><F4>
@@ -154,13 +160,11 @@ nmap <silent> <A-Left>  :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
 cmap w!! w !sudo tee % > /dev/null
-" use C-[hjkl] instead
-"map <C-h> <C-w>h
-"map <C-j> <C-w>j
-"map <C-k> <C-w>k
-"map <C-l> <C-w>l
-"nmap ,s :source $MYVIMRC
-"nmap ,v :e $MYVIMRC
 
-"vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
-"nmap <C-v> :call setreg("\"",system("xclip -o -selection clipboard"))<CR>p
+nnoremap j gj
+nnoremap k gk
+
+" no one needs help
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>

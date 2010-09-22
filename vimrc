@@ -6,6 +6,8 @@ set title
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
+set statusline=%F\ %{fugitive#statusline()}
+
 let mapleader = ","
 
 " hide buffers instead of closing them

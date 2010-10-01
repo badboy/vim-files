@@ -6,7 +6,7 @@ set title
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-set statusline=%F\ %{fugitive#statusline()}
+set statusline=%<%f\ %h%w%m%r%y\ %{fugitive#statusline()}%=%-17.(%l/%L(%p%%),%c%)
 
 let mapleader = ","
 

@@ -94,7 +94,7 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php :call <SID>StripTrailingWhitespaces()
 
 "" C files
 au FileType c let $MANSECT="3,2,7,5,1,8"
@@ -131,7 +131,7 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 nnoremap / /\v
 vnoremap / /\v
 
-nnoremap <leader>a :Ack
+nnoremap <leader>a :Ack 
 
 " enable :W
 command! W w

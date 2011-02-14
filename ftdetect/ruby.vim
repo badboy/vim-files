@@ -24,7 +24,6 @@ function RubyEndToken ()
     endif
 endfunction
 
-
 " Ruby
 au BufNewFile,BufRead *.rb,*.rbw,*.gem,*.gemspec	set filetype=ruby
 
@@ -54,6 +53,7 @@ au FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 au FileType ruby,eruby let g:rubycomplete_rails = 1
 au FileType ruby,eruby call UseRubyIndent()
 au Filetype ruby let b:foldsearchprefix='\v^\s*(#.*)?$'
+au Filetype ruby compiler ruby " Enable compiler support for ruby
 
 " it's <Shift>+Y or <Shift>+X
 " exec :w and :!ruby -c % (syntax check)

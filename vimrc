@@ -170,6 +170,8 @@ cmap w!! w !sudo tee % > /dev/null
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <leader>a :Ack 
+
 " no one needs help
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>

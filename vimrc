@@ -3,12 +3,18 @@ set title
 
 " Use pathogen to easily modify the runtime path to include all
 " plugins under the ~/.vim/bundle directory
-if exists("g:loaded_pathogen") || &cp
-  call pathogen#helptags()
-  call pathogen#runtime_append_all_bundles()
+filetype off
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
+if exists('g:loaded_fugitive') || &cp
   set statusline=%<%f\ %h%w%m%r%y\ %{fugitive#statusline()}%=%-17.(%l/%L(%p%%),%c%)
 endif
+
+syntax on          " Enable syntax highlighting
+filetype on        " Enable filetype detection
+filetype indent on " Enable filetype-specific indenting
+filetype plugin on " Enable filetype-specific plugins
 
 let mapleader = ","
 
@@ -73,11 +79,6 @@ let g:gist_clip_command = 'xclip -selection clipboard'
 " open browser!
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'chromium %URL% &'
-
-syntax on          " Enable syntax highlighting
-filetype on        " Enable filetype detection
-filetype indent on " Enable filetype-specific indenting
-filetype plugin on " Enable filetype-specific plugins
 
 " autocmd
 "" delete trailing whitespace on save

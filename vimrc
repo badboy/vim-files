@@ -96,13 +96,13 @@ function! <SID>StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.md,*.txt,PKGBUILD :call <SID>StripTrailingWhitespaces()
 
 "" C files
 au FileType c let $MANSECT="3,2,7,5,1,8"
-au FileType c set tabstop=8
-au FileType c set softtabstop=8
-au FileType c set shiftwidth=8
+au FileType c set tabstop=4
+au FileType c set softtabstop=4
+au FileType c set shiftwidth=4
 au FileType c set expandtab
 
 "" LaTex Compile //& Open -
@@ -121,6 +121,7 @@ au BufEnter PKGBUILD nested imap <F6>  <C-O>mt<C-O>gg<C-O>/^[
 
 " Arduino source files are c++
 au BufNewFile,BufRead *.pde set filetype=cpp
+au BufNewFile,BufRead *.tpl set filetype=smarty.html
 
 function! InsertTabWrapper()
     let col = col('.') - 1

@@ -37,6 +37,9 @@ au BufNewFile,BufRead *.builder,*.rxml,*.rjs		set filetype=ruby
 au BufNewFile,BufRead [rR]akefile,*.rake		set filetype=ruby
 au BufNewFile,BufRead [rR]akefile,*.rake		set makeprg=rake
 
+" Vagrantfile
+au BufNewFile,BufRead [vV]agrantfile		set filetype=ruby
+
 " Rantfile
 au BufNewFile,BufRead [rR]antfile,*.rant		set filetype=ruby
 

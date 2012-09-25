@@ -127,6 +127,7 @@ au FileType erlang setlocal foldmethod=manual
 " Arduino source files are c++
 au BufNewFile,BufRead *.pde set filetype=cpp
 au BufNewFile,BufRead *.tpl set filetype=smarty.html
+au BufNewFile,BufRead Capfile set filetype=ruby
 
 function! InsertTabWrapper()
     let col = col('.') - 1

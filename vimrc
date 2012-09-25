@@ -124,13 +124,6 @@ au FileType tex nnoremap Y :w<CR>:!rake<CR>
 "" erlang files
 au FileType erlang setlocal foldmethod=manual
 
-"" PKGBUILD files
-"" needs cleanup, maybe own file?
-au BufEnter PKGBUILD nested imap <F6>  <C-O>mt<C-O>gg<C-O>/^[
-            \t]*md5sums=/<CR><C-O>0<C-O>vf(%d<C-O>dd<C-O>k<C-O>:r!makepkg -g 2>/dev/null<CR><C-O>:nohlsearch<CR><C-O>`t|
-                              \ map <silent><F6> mtgg/^[
-            \t]*md5sums=/<CR>0vf(%dddk:r!makepkg -g 2>/dev/null<CR>:nohlsearch<CR>`t
-
 " Arduino source files are c++
 au BufNewFile,BufRead *.pde set filetype=cpp
 au BufNewFile,BufRead *.tpl set filetype=smarty.html

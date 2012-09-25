@@ -30,7 +30,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
 set wildignore+=*/temp/templates_c/*
 
-
 set pastetoggle=<F2>
 
 " always show the status bar
@@ -198,7 +197,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <leader>d "=strftime("# %Y-%m-%d")<CR>Po
 
 " Do not clear the cache, ctrlp!
-let g:ctrlp_clear_cache_on_exit = 0
+"let g:ctrlp_clear_cache_on_exit = 0
 
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text

@@ -149,7 +149,7 @@ command! W w
 " disable highlights of last search
 "imap <F2> <C-O><F2>
 "map <silent><F2> :nohlsearch<CR>
-nmap <silent> <leader><space> :nohlsearch<CR>
+nmap <silent> <leader><space> :set hlsearch!<CR>
 
 " simple switch for cursor{line,column}
 imap <F4> <C-O><F4>
@@ -189,7 +189,6 @@ nnoremap <leader><leader> <c-^>
 
 " provide some context when editing
 set scrolloff=3
-
 
 " http://mislav.uniqpath.com/2011/12/vim-revisited/
 " double percentage sign in command mode is expanded

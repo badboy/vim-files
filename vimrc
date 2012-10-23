@@ -100,6 +100,7 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.md,*.txt,PKGBUILD,*.ronn,*.markdown,*.hs :call StripTrailingWhitespaces()
+autocmd BufWritePre *.scss,*.erb :call StripTrailingWhitespaces()
 
 function! <SID>PandocMarkdownFile()
     silent exec '!pdocm ' . shellescape(@%)
@@ -127,6 +128,7 @@ au FileType erlang setlocal foldmethod=manual
 au BufNewFile,BufRead *.pde set filetype=cpp
 au BufNewFile,BufRead *.tpl set filetype=smarty.html
 au BufNewFile,BufRead Capfile set filetype=ruby
+au BufNewFile,BufRead Guardfile set filetype=ruby
 
 function! InsertTabWrapper()
     let col = col('.') - 1
@@ -254,6 +256,8 @@ endfunction
 map <Leader>b :call NewScratchBuffer()<CR>
 " Move to next function using mm
 map mm ]m
+
+map <Leader>e :CtrlPClearCache<CR>
 
 " Search
 nmap <leader>s  :%s/

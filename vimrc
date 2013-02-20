@@ -200,6 +200,9 @@ map <leader>d "=strftime("# %Y-%m-%d")<CR>Po
 
 " Do not clear the cache, ctrlp!
 "let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_dotfiles = 0
 
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text
@@ -223,7 +226,7 @@ nnoremap <C-y> 3<C-y>
 map <leader>p :set paste!<CR>
 
 " Sometimes F3 won't work, so use ,k
-nmap <leader>k :call QNameInit(1)<cr>:~
+nmap <leader>k :CtrlPBuffer<cr>
 
 "set background=dark
 

@@ -19,9 +19,6 @@
 [submodule "bundle/vim-ragtag"]
 	path = bundle/vim-ragtag
 	url = http://github.com/tpope/vim-ragtag.git
-[submodule "bundle/QuickName"]
-	path = bundle/QuickName
-	url = http://github.com/vim-scripts/QuickName.git
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = http://github.com/tpope/vim-surround.git

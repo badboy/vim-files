@@ -99,8 +99,24 @@ function! StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.md,*.txt,PKGBUILD,*.ronn,*.markdown,*.hs :call StripTrailingWhitespaces()
-autocmd BufWritePre *.scss,*.erb :call StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.cpp,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs :call StripTrailingWhitespaces()
+autocmd BufWritePre *.scss,*.erb,Rakefile :call StripTrailingWhitespaces()
+
+"" delete trailing whitespace, but leave if more than one.
+"" this enables <br>-style wrapping in markdown
+function! StripTrailingWhitespacesMarkdown()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\(\S\)\s$/\1/e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+autocmd BufWritePre *.md,*.markdown :call StripTrailingWhitespacesMarkdown()
+
 
 function! <SID>PandocMarkdownFile()
     silent exec '!pdocm ' . shellescape(@%)
@@ -129,6 +145,8 @@ au BufNewFile,BufRead *.pde set filetype=cpp
 au BufNewFile,BufRead *.tpl set filetype=smarty.html
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
+au BufNewFile,BufRead *.arc set filetype=lisp
+au BufNewFile,BufRead *pry* set filetype=ruby
 
 function! InsertTabWrapper()
     let col = col('.') - 1
@@ -146,6 +164,7 @@ vnoremap / /\v
 
 " enable :W, stupid typo
 command! W w
+command! Q q
 
 " disable highlights of last search
 "imap <F2> <C-O><F2>

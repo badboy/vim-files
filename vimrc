@@ -7,10 +7,6 @@ filetype off
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 
-"if exists('g:loaded_fugitive') || &cp
-  "set statusline=%<%f\ %h%w%m%r%y\ %{fugitive#statusline()}%=%-17.(%l/%L(%p%%),%c%)
-"endif
-
 syntax on          " Enable syntax highlighting
 filetype on        " Enable filetype detection
 filetype indent on " Enable filetype-specific indenting

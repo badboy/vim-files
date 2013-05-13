@@ -2,4 +2,4 @@ swap
 viminfo
 .netrwhist
 /doc/tags
-bundle/*/doc/tags
+/bundle/

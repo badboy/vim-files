@@ -70,8 +70,6 @@ set listchars=tab:▸\ ,eol:¬
 
 colorscheme vibrantink
 
-" nnoremap F :w<Enter>:colorscheme vibrantink<Enter>
-
 " for use with :Gist
 "" clipboard fix
 let g:gist_clip_command = 'xclip -selection clipboard'
@@ -113,7 +111,7 @@ function! StripTrailingWhitespacesMarkdown()
 endfunction
 autocmd BufWritePre *.md,*.markdown :call StripTrailingWhitespacesMarkdown()
 
-
+" Special handling for Markdown
 function! <SID>PandocMarkdownFile()
     silent exec '!pdocm ' . shellescape(@%)
 endfunction
@@ -128,10 +126,6 @@ au FileType c set shiftwidth=4
 au FileType c set expandtab
 
 au FileType php set comments=sl:/*,mb:*,elx:*/
-
-"" LaTex Compile //& Open -
-"au FileType tex nnoremap Y :w<Enter>:!rake && xpdf %<.pdf<Enter>
-au FileType tex nnoremap Y :w<CR>:!rake<CR>
 
 "" erlang files
 au FileType erlang setlocal foldmethod=manual
@@ -157,6 +151,9 @@ inoremap <tab> <c-r>=InsertTabWrapper()<CR>
 " fix Vim's horribly broken default regex “handling”
 nnoremap / /\v
 vnoremap / /\v
+" Search
+nmap <leader>s  :%s/
+vmap <leader>s  :s/"
 
 " enable :W, stupid typo
 command! W w
@@ -179,7 +176,7 @@ map ,8 <ESC>ggg?G``
 map <F9>  :TlistToggle <CR>
 map <F10> :tabnew <CR>
 map <F12> :NERDTreeToggle<CR>
-map \     :NERDTreeToggle<CR>
+"map \     :NERDTreeToggle<CR>
 
 " Easy split window navigation
 " use ALT+ArrowKeys to switch split windows
@@ -223,14 +220,6 @@ let g:ctrlp_dotfiles = 0
 " re-hardwrap paragraphs of text
 nnoremap <leader>q gqip
 
-"set colorcolumn=85
-"set relativenumber
-
-"noremap <Up> <nop>
-"noremap <Down> <nop>
-"noremap <Left> <nop>
-"noremap <Right> <nop>
-
 map <F8> <plug>NERDTreeTabsToggle<CR>
 
 " Make Ctrl-e/y go faster
@@ -240,7 +229,6 @@ nnoremap <C-y> 3<C-y>
 " Sometimes F2 won't work, so use ,p
 map <leader>p :set paste!<CR>
 
-" Sometimes F3 won't work, so use ,k
 nmap <leader>k :CtrlPBuffer<cr>
 
 "set background=dark
@@ -277,10 +265,6 @@ map mm ]m
 
 map <Leader>e :CtrlPClearCache<CR>
 
-" Search
-nmap <leader>s  :%s/
-vmap <leader>s  :s/"
-
 " In command-line mode, <C-A> should go to the front of the line, as in bash.
 cmap <C-A> <C-B>
 
@@ -303,20 +287,36 @@ nmap ]e <Plug>unimpairedMoveDown
 xmap [e <Plug>unimpairedMoveUp
 xmap ]e <Plug>unimpairedMoveDown
 
-" move text left and right
-"nmap <Left> <<
-"nmap <Right> >>
-"vmap <Left> <gv
-"vmap <Right> >gv
 
-"" move text up and down
-"nmap <Up> [e
-"nmap <Down> ]e
-"vmap <Down> ]egv
-"vmap <Up> [egv
+" more natural splitting
+" via thoughtsbot
+set splitbelow
+set splitright
 
+" http://vimcasts.org/episodes/soft-wrapping-text/
+" Show … in front of wrapped line
+set showbreak=…
 
 nmap <Leader>t= :Tabularize /=<CR>
 vmap <Leader>t= :Tabularize /=<CR>
 nmap <Leader>t: :Tabularize /:\zs<CR>
 vmap <Leader>t: :Tabularize /:\zs<CR>
+nmap <Leader>t, :Tabularize /,\zs<CR>
+vmap <Leader>t, :Tabularize /,\zs<CR>
+
+nnoremap <Leader>H :call<SID>LongLineHLToggle()<cr>
+hi OverLength ctermbg=none cterm=none
+match OverLength /\%>80v/
+fun! s:LongLineHLToggle()
+ if !exists('w:longlinehl')
+  let w:longlinehl = matchadd('ErrorMsg', '.\%>80v', 0)
+  echo "Long lines highlighted"
+ else
+  call matchdelete(w:longlinehl)
+  unl w:longlinehl
+  echo "Long lines unhighlighted"
+ endif
+endfunction
+
+" show preview of markdown in w3m
+au FileType markdown map <leader>p :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>

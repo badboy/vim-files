@@ -22,9 +22,6 @@ set wrap " wrap lines
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn
-" ignore .git for ctrlp.vim
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
-set wildignore+=*/temp/templates_c/*
 
 set pastetoggle=<F2>
 

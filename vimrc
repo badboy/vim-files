@@ -115,11 +115,11 @@ autocmd BufWritePost *.m.md :call <SID>PandocMarkdownFile()
 
 
 "" C files
-au FileType c let $MANSECT="3,2,7,5,1,8"
-au FileType c set tabstop=4
-au FileType c set softtabstop=4
-au FileType c set shiftwidth=4
-au FileType c set expandtab
+au FileType c,cpp,cuda let $MANSECT="3,2,7,5,1,8"
+au FileType c,cpp,cuda set tabstop=4
+au FileType c,cpp,cuda set softtabstop=4
+au FileType c,cpp,cuda set shiftwidth=4
+au FileType c,cpp set expandtab
 
 au FileType php set comments=sl:/*,mb:*,elx:*/
 

@@ -1,4 +1,3 @@
-set nocompatible " We're running Vim, not Vi!
 set title
 
 " Use pathogen to easily modify the runtime path to include all

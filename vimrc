@@ -128,7 +128,7 @@ au FileType erlang setlocal foldmethod=manual
 
 " Arduino source files are c++
 au BufNewFile,BufRead *.pde set filetype=cpp
-au BufNewFile,BufRead *.tpl set filetype=smarty.html
+au BufNewFile,BufRead *.go set filetype=go
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
 au BufNewFile,BufRead *.arc set filetype=lisp

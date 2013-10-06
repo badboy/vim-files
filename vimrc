@@ -40,9 +40,9 @@ set visualbell
 set noerrorbells
 set t_vb=
 
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " instead of :lcd %:p:h

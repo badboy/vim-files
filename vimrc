@@ -325,3 +325,12 @@ endfunction
 
 " show preview of markdown in w3m
 au FileType markdown map <leader>p :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
+
+" relative numbers when needed
+"set relativenumber
+"autocmd InsertEnter,WinLeave * :set norelativenumber
+"autocmd InsertLeave,WinEnter * :set relativenumber
+
+nnoremap <Leader>z :LiteDFMToggle<CR>i<Esc>`^
+
+let g:calendar_google_calendar = 1

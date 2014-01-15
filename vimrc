@@ -125,6 +125,11 @@ au FileType c,cpp,cuda set softtabstop=4
 au FileType c,cpp,cuda set shiftwidth=4
 au FileType c,cpp set expandtab
 
+au FileType go set tabstop=4
+au FileType go set softtabstop=4
+au FileType go set shiftwidth=4
+au FileType go set noexpandtab
+
 au FileType php set comments=sl:/*,mb:*,elx:*/
 
 "" erlang files

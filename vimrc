@@ -217,8 +217,8 @@ map <leader>d "=strftime("# %Y-%m-%d")<CR>Po
 
 " Do not clear the cache, ctrlp!
 "let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
-let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])doc($|[/\\])'
+"let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/

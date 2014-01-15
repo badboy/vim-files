@@ -3,8 +3,8 @@ set title
 " Use pathogen to easily modify the runtime path to include all
 " plugins under the ~/.vim/bundle directory
 filetype off
-call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 syntax on          " Enable syntax highlighting
 filetype on        " Enable filetype detection

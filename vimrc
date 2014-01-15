@@ -140,7 +140,7 @@ au BufNewFile,BufRead *.pde set filetype=cpp
 au BufNewFile,BufRead *.go set filetype=go
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
-au BufNewFile,BufRead *.arc set filetype=lisp
+au BufNewFile,BufRead *.arc,*.ops,*.jess set filetype=lisp
 au BufNewFile,BufRead *pry* set filetype=ruby
 
 function! InsertTabWrapper()

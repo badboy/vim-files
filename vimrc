@@ -89,8 +89,12 @@ function! StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.cpp,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs :call StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.cpp,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go :call StripTrailingWhitespaces()
 autocmd BufWritePre *.scss,*.erb,Rakefile :call StripTrailingWhitespaces()
+" make this function accessible
+command! StripTrailing call StripTrailingWhitespaces()
+command! Dot %s/\.  \([A-Z]\)/. \1/
+
 
 "" delete trailing whitespace, but leave if more than one.
 "" this enables <br>-style wrapping in markdown

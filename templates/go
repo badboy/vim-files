@@ -1,0 +1,8 @@
+package main
+
+import (
+	"io"
+)
+
+
+# cursor: 7 del

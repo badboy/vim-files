@@ -87,7 +87,8 @@ else
     highlight Statement ctermfg=202
     highlight String ctermfg=82
     highlight Search ctermbg=White
-    highlight CursorLine cterm=NONE ctermbg=235
+    highlight CursorLine cterm=NONE ctermbg=238
+    highlight CursorColumn ctermbg=238
     highlight Search term=standout ctermfg=14 ctermbg=242
     highlight htmlItalic ctermfg=14
 
@@ -96,4 +97,5 @@ else
     "Invisible character colors
     highlight NonText ctermfg=238
     highlight SpecialKey ctermfg=238
+    highlight Folded ctermfg=14 ctermbg=238
 endif

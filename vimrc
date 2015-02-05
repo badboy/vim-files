@@ -334,3 +334,6 @@ au FileType markdown map <leader>p :w<CR>:!sundown %:p \| w3m -T text/html<CR><C
 nnoremap <Leader>z :LiteDFMToggle<CR>i<Esc>`^
 
 let g:calendar_google_calendar = 1
+
+let g:racer_cmd = "/home/badboy/code/rust/racer/target/release/racer"
+let $RUST_SRC_PATH="/home/badboy/code/rust/rust/src"

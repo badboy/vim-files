@@ -89,8 +89,9 @@ function! StripTrailingWhitespaces()
     let @/=_s
     call cursor(l, c)
 endfunction
-autocmd BufWritePre *.c,*.cpp,*.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go :call StripTrailingWhitespaces()
-autocmd BufWritePre *.scss,*.erb,Rakefile :call StripTrailingWhitespaces()
+autocmd BufWritePre *.c,*.cpp,*.cc,*.h,*.rs :call StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py :call StripTrailingWhitespaces()
+autocmd BufWritePre *.scss,*.erb,Rakefile,*.yml :call StripTrailingWhitespaces()
 " make this function accessible
 command! StripTrailing call StripTrailingWhitespaces()
 command! Dot %s/\.  \([A-Z]\)/. \1/
@@ -117,18 +118,26 @@ function! <SID>PandocMarkdownFile()
 endfunction
 autocmd BufWritePost *.m.md :call <SID>PandocMarkdownFile()
 
+" format go before write
+autocmd BufWritePre *.go Fmt
 
-"" C files
+
+" C files
 au FileType c,cpp,cuda let $MANSECT="3,2,7,5,1,8"
-au FileType c,cpp,cuda set tabstop=4
-au FileType c,cpp,cuda set softtabstop=4
-au FileType c,cpp,cuda set shiftwidth=4
+au FileType c,cpp,cuda,markdown set tabstop=4
+au FileType c,cpp,cuda,markdown set softtabstop=4
+au FileType c,cpp,cuda,markdown set shiftwidth=4
 au FileType c,cpp set expandtab
 
 au FileType go set tabstop=4
 au FileType go set softtabstop=4
 au FileType go set shiftwidth=4
 au FileType go set noexpandtab
+
+" Omnetpp files
+au BufNewFile,BufRead *.ned set filetype=cpp
+au BufNewFile,BufRead *.msg set filetype=cpp
+au BufNewFile,BufRead Makefile* set filetype=make
 
 au FileType php set comments=sl:/*,mb:*,elx:*/
 
@@ -221,6 +230,9 @@ let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
+nmap <leader>k :CtrlPBuffer<cr>
+map <Leader>e :CtrlPClearCache<CR>
+
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text
 nnoremap <leader>q gqip
@@ -234,26 +246,9 @@ nnoremap <C-y> 3<C-y>
 " Sometimes F2 won't work, so use ,p
 map <leader>p :set paste!<CR>
 
-nmap <leader>k :CtrlPBuffer<cr>
-
 "set background=dark
 
-function! GithubLink() range
-    let l:giturl = system('git config remote.origin.url')
-    let l:prefix = substitute(system('git rev-parse --show-prefix'), "\n", '', '')
-    let l:repo = get(split(matchstr(l:giturl, '\w\+\/[_-a-zA-Z0-9]\+\.git'), '\.'), 0)
-    let l:url = 'https://github.com/' . l:repo
-    let l:branch = get(split(substitute(system('git symbolic-ref HEAD'), "\n", '', '') , '/'), -1)
-    let l:filename = l:prefix . @%
-
-    let l:full = join([l:url, 'blob', l:branch, l:filename], '/')
-
-    let l:complete = l:full . '#L' . a:firstline . '-' . a:lastline
-
-    echo l:complete
-endfunction
-
-noremap <Leader>gh :call GithubLink()<CR>
+map! <unique> <Leader>gh <Plug>GitHubLink
 
 function! NewScratchBuffer()
   split
@@ -267,8 +262,6 @@ endfunction
 map <Leader>b :call NewScratchBuffer()<CR>
 " Move to next function using mm
 map mm ]m
-
-map <Leader>e :CtrlPClearCache<CR>
 
 " In command-line mode, <C-A> should go to the front of the line, as in bash.
 cmap <C-A> <C-B>
@@ -300,7 +293,7 @@ set splitright
 
 " http://vimcasts.org/episodes/soft-wrapping-text/
 " Show … in front of wrapped line
-set showbreak=…
+set showbreak=\|
 
 nmap <Leader>t= :Tabularize /=<CR>
 vmap <Leader>t= :Tabularize /=<CR>
@@ -324,7 +317,7 @@ fun! s:LongLineHLToggle()
 endfunction
 
 " show preview of markdown in w3m
-au FileType markdown map <leader>p :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
+au FileType markdown map <leader>o :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
 
 " relative numbers when needed
 "set relativenumber
@@ -334,6 +327,25 @@ au FileType markdown map <leader>p :w<CR>:!sundown %:p \| w3m -T text/html<CR><C
 nnoremap <Leader>z :LiteDFMToggle<CR>i<Esc>`^
 
 let g:calendar_google_calendar = 1
+
+" Sessions
+" autosave on close
+let g:session_autosave = 'yes'
+" autosave every 30min
+let g:session_autosave_periodic = 30
+let g:session_autoload = 'no'
+
+set sessionoptions-=help
+set sessionoptions-=options
+
+nnoremap <leader>m :ta 
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" when joining lines, don't insert two spaces after punctuation
+set nojoinspaces
+" enable mouse clicking (now that the vim package has everything)
+"set mouse=a
 
 let g:racer_cmd = "/home/badboy/code/rust/racer/target/release/racer"
 let $RUST_SRC_PATH="/home/badboy/code/rust/rust/src"

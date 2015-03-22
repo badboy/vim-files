@@ -350,3 +350,12 @@ set nojoinspaces
 
 let g:racer_cmd = "/home/badboy/code/rust/racer/target/release/racer"
 let $RUST_SRC_PATH="/home/badboy/code/rust/rust/src"
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

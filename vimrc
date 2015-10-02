@@ -113,7 +113,7 @@ set viminfo+=n~/.vim/viminfo
 " enable display of invisible whitespace
 set list
 " toggle invisible whitespace display
-nmap <leader>l :set list!<CR>
+nmap <Leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 colorscheme vibrantink
@@ -216,8 +216,8 @@ inoremap <tab> <c-r>=InsertTabWrapper()<CR>
 nnoremap / /\v
 vnoremap / /\v
 " Search
-nmap <leader>s  :%s/
-vmap <leader>s  :s/"
+nmap <Leader>s  :%s/
+vmap <Leader>s  :s/"
 
 " enable :W, stupid typo
 command! W w
@@ -226,7 +226,7 @@ command! Q q
 " disable highlights of last search
 "imap <F2> <C-O><F2>
 "map <silent><F2> :nohlsearch<CR>
-nmap <silent> <leader><space> :set hlsearch!<CR>
+nmap <silent> <Leader><space> :set hlsearch!<CR>
 
 " simple switch for cursor{line,column}
 imap <F4> <C-O><F4>
@@ -254,7 +254,7 @@ cmap w!! w !sudo tee % > /dev/null
 nnoremap j gj
 nnoremap k gk
 
-nnoremap <leader>a :Ack 
+nnoremap <Leader>a :Ack 
 
 " no one needs help
 inoremap <F1> <ESC>
@@ -262,7 +262,7 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
 " ,, switches between two last buffers
-nnoremap <leader><leader> <c-^>
+nnoremap <Leader><Leader> <c-^>
 
 " provide some context when editing
 set scrolloff=3
@@ -272,20 +272,18 @@ set scrolloff=3
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-map <leader>d "=strftime("# %Y-%m-%d")<CR>Po
-
 " Do not clear the cache, ctrlp!
 "let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])doc($|[/\\])|(^|[/\\])(target|_site)($|[/\\])'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
-nmap <leader>k :CtrlPBuffer<cr>
-map <Leader>e :CtrlPClearCache<CR>
+nnoremap <Leader>k :CtrlPBuffer<cr>
+nnoremap <Leader>e :CtrlPClearCache<CR>
 
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text
-nnoremap <leader>q gqip
+nnoremap <Leader>q gqip
 
 map <F8> <plug>NERDTreeTabsToggle<CR>
 
@@ -294,7 +292,7 @@ nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
 " Sometimes F2 won't work, so use ,p
-map <leader>p :set paste!<CR>
+map <Leader>p :set paste!<CR>
 
 "set background=dark
 
@@ -367,7 +365,7 @@ fun! s:LongLineHLToggle()
 endfunction
 
 " show preview of markdown in w3m
-au FileType markdown map <leader>o :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
+au FileType markdown map <Leader>o :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
 
 " relative numbers when needed
 "set relativenumber
@@ -388,7 +386,7 @@ let g:session_autoload = 'no'
 set sessionoptions-=help
 set sessionoptions-=options
 
-nnoremap <leader>m :ta 
+nnoremap <Leader>m :ta 
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 

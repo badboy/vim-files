@@ -239,8 +239,6 @@ map ,8 <ESC>ggg?G``
 
 map <F9>  :TlistToggle <CR>
 map <F10> :tabnew <CR>
-map <F12> :NERDTreeToggle<CR>
-"map \     :NERDTreeToggle<CR>
 
 " Easy split window navigation
 " use ALT+ArrowKeys to switch split windows
@@ -352,7 +350,7 @@ vmap <Leader>t> :Tabularize /=><CR>
 
 nnoremap <Leader>H :call<SID>LongLineHLToggle()<cr>
 hi OverLength ctermbg=none cterm=none
-match OverLength /\%>80v/
+match OverLength /\%>100v/
 fun! s:LongLineHLToggle()
  if !exists('w:longlinehl')
   let w:longlinehl = matchadd('ErrorMsg', '.\%>100v', 0)

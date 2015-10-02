@@ -1,10 +1,63 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'tpope/vim-fugitive'
+Plugin 'wting/rust.vim'
+Plugin 'badboy/tslime.vim'
+Plugin 'tpope/vim-rails'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'esneider/YUNOcommit.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'clones/vim-taglist'
+Plugin 'shemerey/vim-project'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'vim-scripts/cecutil'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'msanders/snipmate.vim'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'xolox/vim-misc'
+Plugin 'edsono/vim-matchit'
+Plugin 'bilalq/lite-dfm'
+Plugin 'tpope/vim-rbenv'
+Plugin 'vim-scripts/DrawIt'
+Plugin 'vim-scripts/simplefold'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'tristen/vim-sparkup'
+Plugin 'mileszs/ack.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'itchyny/calendar.vim'
+Plugin 'xolox/vim-session'
+Plugin 'vim-pandoc/vim-pandoc-after'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'davidoc/taskpaper.vim'
+Plugin 'jtai/vim-githublink'
+Plugin 'fatih/vim-go'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-ragtag'
+Plugin 'racer-rust/vim-racer'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'sjl/clam.vim'
+"Plugin 'mhinz/vim-startify'
+
+call vundle#end()
+filetype plugin indent on
+
 set title
-
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-filetype off
-call pathogen#infect()
-
 syntax on          " Enable syntax highlighting
 filetype on        " Enable filetype detection
 filetype indent on " Enable filetype-specific indenting

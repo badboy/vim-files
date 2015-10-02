@@ -64,6 +64,7 @@ nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 colorscheme vibrantink
+"colorscheme PaperColor-Dark
 
 " for use with :Gist
 "" clipboard fix
@@ -116,9 +117,6 @@ function! <SID>PandocMarkdownFile()
     silent exec '!pdocm ' . shellescape(@%)
 endfunction
 autocmd BufWritePost *.m.md :call <SID>PandocMarkdownFile()
-
-" format go before write
-autocmd BufWritePre *.go Fmt
 
 
 " C files
@@ -225,7 +223,7 @@ map <leader>d "=strftime("# %Y-%m-%d")<CR>Po
 
 " Do not clear the cache, ctrlp!
 "let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])doc($|[/\\])'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])doc($|[/\\])|(^|[/\\])(target|_site)($|[/\\])'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
@@ -246,8 +244,6 @@ nnoremap <C-y> 3<C-y>
 map <leader>p :set paste!<CR>
 
 "set background=dark
-
-map! <unique> <Leader>gh <Plug>GitHubLink
 
 function! NewScratchBuffer()
   split
@@ -308,7 +304,7 @@ hi OverLength ctermbg=none cterm=none
 match OverLength /\%>80v/
 fun! s:LongLineHLToggle()
  if !exists('w:longlinehl')
-  let w:longlinehl = matchadd('ErrorMsg', '.\%>80v', 0)
+  let w:longlinehl = matchadd('ErrorMsg', '.\%>100v', 0)
   echo "Long lines highlighted"
  else
   call matchdelete(w:longlinehl)
@@ -359,3 +355,15 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_c_include_dirs = [ './deps/hiredis' ]
+let g:syntastic_c_compiler_options = ' -std=c99'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
+let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
+let g:syntastic_javascript_checkers = []
+let g:syntastic_tex_checkers = []
+"let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_python_flake8_exec = 'flake8-python2'
+
+"let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#spell#enabled = 0

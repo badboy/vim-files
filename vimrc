@@ -50,8 +50,10 @@ Plugin 'tpope/vim-ragtag'
 Plugin 'racer-rust/vim-racer'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
+"Plugin 'wincent/command-t'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/clam.vim'
+Plugin 'Chiel92/vim-autoformat'
 "Plugin 'mhinz/vim-startify'
 
 call vundle#end()
@@ -184,6 +186,11 @@ au FileType go set softtabstop=4
 au FileType go set shiftwidth=4
 au FileType go set noexpandtab
 
+au FileType java set tabstop=4
+au FileType java set softtabstop=4
+au FileType java set shiftwidth=4
+au FileType java set expandtab
+
 " Omnetpp files
 au BufNewFile,BufRead *.ned set filetype=cpp
 au BufNewFile,BufRead *.msg set filetype=cpp
@@ -271,13 +278,24 @@ set scrolloff=3
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Do not clear the cache, ctrlp!
-"let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])doc($|[/\\])|(^|[/\\])(target|_site)($|[/\\])'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])(target|_site)($|[/\\])'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
 nnoremap <Leader>k :CtrlPBuffer<cr>
 nnoremap <Leader>e :CtrlPClearCache<CR>
+"nnoremap <C-p> :CommandT<cr>
+"nnoremap <Leader>k :CommandTBuffer<cr>
+"nnoremap <Leader>e :CommandTFlush<CR>
+
+"set wildignore+=target
+"set wildignore+=_site
+
+"let g:CommandTMaxHeight = 10
+"let g:CommandTMatchWindowReverse = 1
+"let g:CommandTHighlightColor = 'PmenuSel'
+
 
 " from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text
@@ -411,8 +429,12 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
 let g:syntastic_javascript_checkers = []
 let g:syntastic_tex_checkers = []
+let g:syntastic_java_checkers = []
 "let g:syntastic_python_checkers = ['flake8']
 "let g:syntastic_python_flake8_exec = 'flake8-python2'
 
 "let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#spell#enabled = 0
+
+let g:formatdef_rustfmt = '"rustfmt"'
+let g:formatters_rust = ['rustfmt']

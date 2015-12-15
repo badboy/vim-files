@@ -15,7 +15,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'esneider/YUNOcommit.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'clones/vim-taglist'
+Plugin 'majutsushi/tagbar'
 Plugin 'shemerey/vim-project'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
@@ -244,7 +244,7 @@ map <silent><F5> :set invcursorcolumn<CR>
 " apply rot13 for people snooping over shoulder, good fun
 map ,8 <ESC>ggg?G``
 
-map <F9>  :TlistToggle <CR>
+nmap <F9> :TagbarToggle<CR>
 map <F10> :tabnew <CR>
 
 " Easy split window navigation
@@ -438,3 +438,17 @@ let g:pandoc#spell#enabled = 0
 
 let g:formatdef_rustfmt = '"rustfmt"'
 let g:formatters_rust = ['rustfmt']
+
+ let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits,traits',
+        \'i:impls,trait implementations',
+    \]
+    \}

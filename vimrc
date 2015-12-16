@@ -9,7 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'tpope/vim-fugitive'
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'badboy/tslime.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'ngmy/vim-rubocop'
@@ -53,7 +53,6 @@ Plugin 'kien/ctrlp.vim'
 "Plugin 'wincent/command-t'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/clam.vim'
-Plugin 'Chiel92/vim-autoformat'
 "Plugin 'mhinz/vim-startify'
 
 call vundle#end()
@@ -436,10 +435,9 @@ let g:syntastic_java_checkers = []
 "let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#spell#enabled = 0
 
-let g:formatdef_rustfmt = '"rustfmt"'
-let g:formatters_rust = ['rustfmt']
+let g:rustfmt_autosave = 1
 
- let g:tagbar_type_rust = {
+let g:tagbar_type_rust = {
     \ 'ctagstype' : 'rust',
     \ 'kinds' : [
         \'T:types,type definitions',

@@ -5,7 +5,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'tpope/vim-fugitive'
@@ -13,7 +13,6 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'badboy/tslime.vim'
 Plugin 'tpope/vim-rails'
 Plugin 'ngmy/vim-rubocop'
-Plugin 'esneider/YUNOcommit.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'shemerey/vim-project'
@@ -47,13 +46,14 @@ Plugin 'fatih/vim-go'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-ragtag'
-Plugin 'racer-rust/vim-racer'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 "Plugin 'wincent/command-t'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/clam.vim'
+Plugin 'valloric/YouCompleteMe'
 "Plugin 'mhinz/vim-startify'
+Plugin 'vim-scripts/Conque-GDB'
 
 call vundle#end()
 filetype plugin indent on
@@ -116,9 +116,6 @@ set list
 " toggle invisible whitespace display
 nmap <Leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
-
-colorscheme vibrantink
-"colorscheme PaperColor-Dark
 
 " for use with :Gist
 "" clipboard fix
@@ -309,8 +306,6 @@ nnoremap <C-y> 3<C-y>
 " Sometimes F2 won't work, so use ,p
 map <Leader>p :set paste!<CR>
 
-"set background=dark
-
 function! NewScratchBuffer()
   split
   enew
@@ -327,7 +322,9 @@ map mm ]m
 " In command-line mode, <C-A> should go to the front of the line, as in bash.
 cmap <C-A> <C-B>
 
+set t_Co=256
 set background=dark
+colorscheme PaperColor
 
 function! s:Move(cmd, count, map) abort
     normal! m`
@@ -410,8 +407,8 @@ set nojoinspaces
 " enable mouse clicking (now that the vim package has everything)
 "set mouse=a
 
-let g:racer_cmd = "/home/badboy/code/rust/racer/target/release/racer"
-let $RUST_SRC_PATH="/home/badboy/code/rust/rust/src"
+let g:ycm_rust_src_path = "/home/jer/code/rust/rust/src"
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -429,13 +426,10 @@ let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
 let g:syntastic_javascript_checkers = []
 let g:syntastic_tex_checkers = []
 let g:syntastic_java_checkers = []
-"let g:syntastic_python_checkers = ['flake8']
-"let g:syntastic_python_flake8_exec = 'flake8-python2'
+let g:syntastic_python_checkers = ['python2']
+let g:syntastic_quiet_messages = { "level": "warning" }
 
-"let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#spell#enabled = 0
-
-let g:rustfmt_autosave = 1
 
 let g:tagbar_type_rust = {
     \ 'ctagstype' : 'rust',

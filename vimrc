@@ -409,7 +409,8 @@ set nojoinspaces
 "set mouse=a
 
 let g:ycm_rust_src_path = "/home/jer/code/rust/rust/src"
-let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '!*']
+let g:ycm_server_python_interpreter = 'python'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

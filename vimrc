@@ -275,7 +275,7 @@ set scrolloff=3
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Do not clear the cache, ctrlp!
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])(target|_site)($|[/\\])'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0

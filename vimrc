@@ -446,3 +446,6 @@ let g:tagbar_type_rust = {
         \'i:impls,trait implementations',
     \]
     \}
+
+" disable Shift-K. I almost never need it, pressing it only by accident
+map <S-k> <Nop>

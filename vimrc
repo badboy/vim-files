@@ -54,6 +54,7 @@ Plugin 'sjl/clam.vim'
 Plugin 'valloric/YouCompleteMe'
 "Plugin 'mhinz/vim-startify'
 Plugin 'vim-scripts/Conque-GDB'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 call vundle#end()
 filetype plugin indent on

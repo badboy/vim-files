@@ -1,6 +1,5 @@
 https://github.com/tpope/vim-rails.git
 https://github.com/scrooloose/nerdtree.git
-https://github.com/clones/vim-taglist.git
 https://github.com/shemerey/vim-project.git
 https://github.com/mattn/webapi-vim.git
 https://github.com/mattn/gist-vim.git

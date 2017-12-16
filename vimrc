@@ -12,7 +12,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'rust-lang/rust.vim'
 Plugin 'badboy/tslime.vim'
 Plugin 'tpope/vim-rails'
-Plugin 'ngmy/vim-rubocop'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'shemerey/vim-project'
@@ -33,31 +32,25 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'tristen/vim-sparkup'
 Plugin 'mileszs/ack.vim'
 Plugin 'cespare/vim-toml'
-Plugin 'itchyny/calendar.vim'
 Plugin 'xolox/vim-session'
 Plugin 'vim-pandoc/vim-pandoc-after'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'chase/vim-ansible-yaml'
-Plugin 'davidoc/taskpaper.vim'
 Plugin 'jtai/vim-githublink'
-Plugin 'fatih/vim-go'
-Plugin 'elixir-lang/vim-elixir'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-ragtag'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
-"Plugin 'wincent/command-t'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/clam.vim'
 Plugin 'valloric/YouCompleteMe'
-"Plugin 'mhinz/vim-startify'
-Plugin 'vim-scripts/Conque-GDB'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'reedes/vim-colors-pencil'
+Plugin 'skywind3000/asyncrun.vim'
 
 call vundle#end()
-filetype plugin indent on
 
 set title
 syntax on          " Enable syntax highlighting
@@ -176,7 +169,7 @@ au FileType c,cpp,cuda let $MANSECT="3,2,7,5,1,8"
 au FileType c,cpp,cuda,markdown set tabstop=4
 au FileType c,cpp,cuda,markdown set softtabstop=4
 au FileType c,cpp,cuda,markdown set shiftwidth=4
-au FileType c,cpp set expandtab
+au FileType c,cpp set noexpandtab
 
 au FileType go set tabstop=4
 au FileType go set softtabstop=4
@@ -205,6 +198,7 @@ au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
 au BufNewFile,BufRead *.arc,*.ops,*.jess set filetype=lisp
 au BufNewFile,BufRead *pry* set filetype=ruby
+au BufNewFile,BufRead *.lalrpop set filetype=rust
 
 function! InsertTabWrapper()
     let col = col('.') - 1
@@ -258,6 +252,36 @@ nnoremap k gk
 
 nnoremap <Leader>a :Ack 
 
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+" open quickfix window using ,w
+nnoremap <Leader>w :call ToggleList("Quickfix List", 'c')<cr>
+
 " no one needs help
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
@@ -276,7 +300,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Do not clear the cache, ctrlp!
 let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])(target|_site)($|[/\\])'
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend|ko|mod.c|symvers|order|pdf)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])(target|_site|build)($|[/\\])'
 "let g:ctrlp_working_path_mode = 0
 let g:ctrlp_dotfiles = 0
 
@@ -387,8 +411,6 @@ au FileType markdown map <Leader>o :w<CR>:!sundown %:p \| w3m -T text/html<CR><C
 
 nnoremap <Leader>z :LiteDFMToggle<CR>i<Esc>`^
 
-let g:calendar_google_calendar = 1
-
 " Sessions
 " autosave on close
 let g:session_autosave = 'yes'
@@ -401,7 +423,7 @@ set sessionoptions-=options
 
 nnoremap <Leader>m :ta 
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'rg --vimgrep --'
 
 " when joining lines, don't insert two spaces after punctuation
 set nojoinspaces
@@ -411,6 +433,8 @@ set nojoinspaces
 let g:ycm_rust_src_path = "/home/jer/code/rust/rust/src"
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '!*']
 let g:ycm_server_python_interpreter = 'python'
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -421,18 +445,20 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_remove_include_errors = 1
-let g:syntastic_c_include_dirs = [ './deps/hiredis' ]
+let g:syntastic_c_include_dirs = [ './deps/hiredis', './include' ]
 let g:syntastic_c_compiler_options = ' -std=c99'
 let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
-let g:syntastic_javascript_checkers = []
-let g:syntastic_tex_checkers = []
-let g:syntastic_java_checkers = []
 let g:syntastic_python_checkers = ['python2']
 let g:syntastic_quiet_messages = { "level": "warning" }
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'active_filetypes': [],
+                           \ 'passive_filetypes': ['scss','java','tex','javascript'] }
+let g:syntastic_c_config_file = "/home/jer/.syntastic_c_config"
 
 let g:pandoc#spell#enabled = 0
 
+let g:tagbar_left = 1
 let g:tagbar_type_rust = {
     \ 'ctagstype' : 'rust',
     \ 'kinds' : [

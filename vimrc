@@ -49,6 +49,7 @@ Plugin 'valloric/YouCompleteMe'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'skywind3000/asyncrun.vim'
+Plugin 'rhysd/rust-doc.vim'
 
 call vundle#end()
 
@@ -475,3 +476,6 @@ let g:tagbar_type_rust = {
 
 " disable Shift-K. I almost never need it, pressing it only by accident
 map <S-k> <Nop>
+
+let g:rust_doc#downloaded_rust_doc_dir = "~/.rustup/toolchains/stable-x86_64-apple-darwin"
+"let g:rust_doc#vim_open_cmd = '!w3m'

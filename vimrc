@@ -424,7 +424,7 @@ set sessionoptions-=options
 
 nnoremap <Leader>m :ta 
 
-let g:ackprg = 'rg --vimgrep --'
+let g:ackprg = 'rg -S --vimgrep --'
 
 " when joining lines, don't insert two spaces after punctuation
 set nojoinspaces

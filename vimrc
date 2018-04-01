@@ -42,7 +42,6 @@ Plugin 'jtai/vim-githublink'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-ragtag'
 Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'sjl/clam.vim'
 Plugin 'valloric/YouCompleteMe'
@@ -50,6 +49,9 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'skywind3000/asyncrun.vim'
 Plugin 'rhysd/rust-doc.vim'
+Plugin 'vim-scripts/a.vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 call vundle#end()
 
@@ -68,7 +70,7 @@ set wrap " wrap lines
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn
+set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn,.hg
 
 set pastetoggle=<F2>
 
@@ -93,6 +95,9 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 
+" make backspace work like in other programs
+set backspace=indent,eol,start
+
 " instead of :lcd %:p:h
 " to change directories upon opening a file
 "set autochdir
@@ -114,10 +119,10 @@ set listchars=tab:▸\ ,eol:¬
 
 " for use with :Gist
 "" clipboard fix
-let g:gist_clip_command = 'xclip -selection clipboard'
+let g:gist_clip_command = 'pbcopy'
 " open browser!
 let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'chromium %URL% &'
+let g:gist_browser_command = 'open %URL%'
 
 " autocmd
 "" delete trailing whitespace on save
@@ -138,6 +143,7 @@ endfunction
 autocmd BufWritePre *.c,*.cpp,*.cc,*.h,*.rs :call StripTrailingWhitespaces()
 autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py :call StripTrailingWhitespaces()
 autocmd BufWritePre *.scss,*.erb,Rakefile,*.yml :call StripTrailingWhitespaces()
+autocmd BufWritePre *.rst :call StripTrailingWhitespaces()
 " make this function accessible
 command! StripTrailing call StripTrailingWhitespaces()
 command! Dot %s/\.  \([A-Z]\)/. \1/
@@ -166,11 +172,11 @@ autocmd BufWritePost *.m.md :call <SID>PandocMarkdownFile()
 
 
 " C files
-au FileType c,cpp,cuda let $MANSECT="3,2,7,5,1,8"
-au FileType c,cpp,cuda,markdown set tabstop=4
-au FileType c,cpp,cuda,markdown set softtabstop=4
-au FileType c,cpp,cuda,markdown set shiftwidth=4
-au FileType c,cpp set noexpandtab
+au FileType c,cpp let $MANSECT="3,2,7,5,1,8"
+
+au FileType markdown set tabstop=4
+au FileType markdown set softtabstop=4
+au FileType markdown set shiftwidth=4
 
 au FileType go set tabstop=4
 au FileType go set softtabstop=4
@@ -182,24 +188,11 @@ au FileType java set softtabstop=4
 au FileType java set shiftwidth=4
 au FileType java set expandtab
 
-" Omnetpp files
-au BufNewFile,BufRead *.ned set filetype=cpp
-au BufNewFile,BufRead *.msg set filetype=cpp
-au BufNewFile,BufRead Makefile* set filetype=make
-
-au FileType php set comments=sl:/*,mb:*,elx:*/
-
-"" erlang files
-au FileType erlang setlocal foldmethod=manual
-
-" Arduino source files are c++
-au BufNewFile,BufRead *.pde set filetype=cpp
-au BufNewFile,BufRead *.go set filetype=go
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
-au BufNewFile,BufRead *.arc,*.ops,*.jess set filetype=lisp
 au BufNewFile,BufRead *pry* set filetype=ruby
 au BufNewFile,BufRead *.lalrpop set filetype=rust
+au BufNewFile,BufRead *.jsm set filetype=javascript
 
 function! InsertTabWrapper()
     let col = col('.') - 1
@@ -221,6 +214,8 @@ vmap <Leader>s  :s/"
 " enable :W, stupid typo
 command! W w
 command! Q q
+command! Qa qa
+cnoremap <expr> X (getcmdtype() is# ':' && empty(getcmdline())) ? 'x' : 'X'
 
 " disable highlights of last search
 "imap <F2> <C-O><F2>
@@ -282,6 +277,7 @@ endfunction
 
 " open quickfix window using ,w
 nnoremap <Leader>w :call ToggleList("Quickfix List", 'c')<cr>
+nnoremap <Leader>v :lclose<cr>
 
 " no one needs help
 inoremap <F1> <ESC>
@@ -299,27 +295,13 @@ set scrolloff=3
 " to directory of current file - http://vimcasts.org/e/14
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" Do not clear the cache, ctrlp!
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend|ko|mod.c|symvers|order|pdf)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|(^|[/\\])(target|_site|build)($|[/\\])'
-"let g:ctrlp_working_path_mode = 0
-let g:ctrlp_dotfiles = 0
-
-nnoremap <Leader>k :CtrlPBuffer<cr>
-nnoremap <Leader>e :CtrlPClearCache<CR>
-"nnoremap <C-p> :CommandT<cr>
-"nnoremap <Leader>k :CommandTBuffer<cr>
-"nnoremap <Leader>e :CommandTFlush<CR>
+let g:fzf_command_prefix = 'Fzf'
+nnoremap <C-p> :FZF<cr>
+nnoremap <Leader>k :FzfBuffer<cr>
 
 "set wildignore+=target
 "set wildignore+=_site
 
-"let g:CommandTMaxHeight = 10
-"let g:CommandTMatchWindowReverse = 1
-"let g:CommandTHighlightColor = 'PmenuSel'
-
-
-" from: http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 " re-hardwrap paragraphs of text
 nnoremap <Leader>q gqip
 
@@ -432,7 +414,7 @@ set nojoinspaces
 "set mouse=a
 
 let g:ycm_rust_src_path = "/home/jer/code/rust/rust/src"
-let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '!*']
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '/Users/jrediger/mozilla/src/mozilla-central/.ycm_extra_conf.py', '/Users/jrediger/mozilla/src/gecko/.ycm_extra_conf.py', '!*']
 let g:ycm_server_python_interpreter = 'python'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
@@ -446,16 +428,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_remove_include_errors = 1
-let g:syntastic_c_include_dirs = [ './deps/hiredis', './include' ]
-let g:syntastic_c_compiler_options = ' -std=c99'
-let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
-let g:syntastic_python_checkers = ['python2']
+let g:syntastic_python_checkers = ['python']
 let g:syntastic_quiet_messages = { "level": "warning" }
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['scss','java','tex','javascript'] }
-let g:syntastic_c_config_file = "/home/jer/.syntastic_c_config"
 
 let g:pandoc#spell#enabled = 0
 
@@ -478,4 +456,3 @@ let g:tagbar_type_rust = {
 map <S-k> <Nop>
 
 let g:rust_doc#downloaded_rust_doc_dir = "~/.rustup/toolchains/stable-x86_64-apple-darwin"
-"let g:rust_doc#vim_open_cmd = '!w3m'

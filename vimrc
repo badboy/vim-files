@@ -10,48 +10,32 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rust-lang/rust.vim'
-Plugin 'badboy/tslime.vim'
-Plugin 'tpope/vim-rails'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'shemerey/vim-project'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'vim-scripts/cecutil'
+"Plugin 'tpope/vim-markdown'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'msanders/snipmate.vim'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'xolox/vim-misc'
-Plugin 'edsono/vim-matchit'
-Plugin 'bilalq/lite-dfm'
-Plugin 'tpope/vim-rbenv'
-Plugin 'vim-scripts/DrawIt'
-Plugin 'vim-scripts/simplefold'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'tristen/vim-sparkup'
 Plugin 'mileszs/ack.vim'
 Plugin 'cespare/vim-toml'
-Plugin 'xolox/vim-session'
-Plugin 'vim-pandoc/vim-pandoc-after'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'chase/vim-ansible-yaml'
 Plugin 'jtai/vim-githublink'
-Plugin 'vim-ruby/vim-ruby'
+"Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-ragtag'
 Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'sjl/clam.vim'
 Plugin 'valloric/YouCompleteMe'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'skywind3000/asyncrun.vim'
 Plugin 'rhysd/rust-doc.vim'
 Plugin 'vim-scripts/a.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -163,13 +147,6 @@ function! StripTrailingWhitespacesMarkdown()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.md,*.markdown :call StripTrailingWhitespacesMarkdown()
-
-" Special handling for Markdown
-function! <SID>PandocMarkdownFile()
-    silent exec '!pdocm ' . shellescape(@%)
-endfunction
-autocmd BufWritePost *.m.md :call <SID>PandocMarkdownFile()
-
 
 " C files
 au FileType c,cpp let $MANSECT="3,2,7,5,1,8"
@@ -418,6 +395,7 @@ let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '/Users/jrediger/mozill
 let g:ycm_server_python_interpreter = 'python'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_auto_trigger=0
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -434,8 +412,6 @@ let g:syntastic_quiet_messages = { "level": "warning" }
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],
                            \ 'passive_filetypes': ['scss','java','tex','javascript'] }
-
-let g:pandoc#spell#enabled = 0
 
 let g:tagbar_left = 1
 let g:tagbar_type_rust = {

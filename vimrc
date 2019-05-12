@@ -1,3 +1,5 @@
+" Temporary workaround for import warning bug: https://github.com/macvim-dev/macvim/issues/705
+silent! pyx import sys
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -36,6 +38,10 @@ Plugin 'vim-scripts/a.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'keith/swift.vim'
+Plugin 'udalov/kotlin-vim'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'runoshun/vim-alloy'
 
 call vundle#end()
 
@@ -78,6 +84,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+" Disable folding completely
+set nofoldenable
 
 " make backspace work like in other programs
 set backspace=indent,eol,start
@@ -125,7 +133,7 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.c,*.cpp,*.cc,*.h,*.rs :call StripTrailingWhitespaces()
-autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py :call StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.jsm,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py :call StripTrailingWhitespaces()
 autocmd BufWritePre *.scss,*.erb,Rakefile,*.yml :call StripTrailingWhitespaces()
 autocmd BufWritePre *.rst :call StripTrailingWhitespaces()
 " make this function accessible
@@ -363,6 +371,8 @@ endfunction
 
 " show preview of markdown in w3m
 au FileType markdown map <Leader>o :w<CR>:!sundown %:p \| w3m -T text/html<CR><CR>
+" copy current path into the clipboard
+nnoremap <silent> yp :!echo -n % \| pbcopy<CR><CR>
 
 " relative numbers when needed
 "set relativenumber
@@ -403,11 +413,13 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_c_remove_include_errors = 1
 let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
-let g:syntastic_python_checkers = ['python']
+let g:syntastic_rust_checkers = []
+let g:syntastic_python_checkers = []
+let g:syntastic_swift_checkers = []
 let g:syntastic_quiet_messages = { "level": "warning" }
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': [],

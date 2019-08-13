@@ -33,7 +33,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'jtai/vim-githublink'
 Plugin 'tpope/vim-ragtag'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'valloric/YouCompleteMe'
 Plugin 'vim-scripts/a.vim'
@@ -414,22 +414,22 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_auto_trigger=0
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_remove_include_errors = 1
-let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
-let g:syntastic_rust_checkers = []
-let g:syntastic_python_checkers = []
-let g:syntastic_swift_checkers = []
-let g:syntastic_quiet_messages = { "level": "warning" }
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'active_filetypes': [],
-                           \ 'passive_filetypes': ['scss','java','tex','javascript'] }
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_c_remove_include_errors = 1
+"let g:syntastic_rst_rst2pseudoxml_quiet_messages = { "level": "error" }
+"let g:syntastic_rust_checkers = []
+"let g:syntastic_python_checkers = []
+"let g:syntastic_swift_checkers = []
+"let g:syntastic_quiet_messages = { "level": "warning" }
+"let g:syntastic_mode_map = { 'mode': 'active',
+                           "\ 'active_filetypes': [],
+                           "\ 'passive_filetypes': ['scss','java','tex','javascript'] }
 
 let g:tagbar_left = 1
 let g:tagbar_type_rust = {

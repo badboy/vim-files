@@ -3,6 +3,12 @@ silent! pyx import sys
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+if has("gui_running")
+  set guifont=Monaco:h12
+  set linespace=0
+  let g:nerdtree_tabs_open_on_gui_startup = 0
+endif
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()

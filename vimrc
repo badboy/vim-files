@@ -74,6 +74,7 @@ set laststatus=2
 set shell=/bin/zsh
 set nu
 set formatoptions-=o
+set formatoptions+=r
 set ignorecase
 set smartcase
 set gdefault                   " applies substitutions globally on lines (like /g)

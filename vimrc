@@ -440,11 +440,5 @@ let g:tagbar_type_rust = {
     \]
     \}
 
-
-" add these lines to rustfmt on save and not show the youcompleteme
-" preview scratch
-let g:rustfmt_autosave = 1
-set completeopt-=preview
-
 " disable Shift-K. I almost never need it, pressing it only by accident
 map <S-k> <Nop>

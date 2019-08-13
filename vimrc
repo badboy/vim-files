@@ -50,6 +50,10 @@ let mapleader = ","
 " hide buffers instead of closing them
 set hidden
 
+" increase as decimals
+" via https://lobste.rs/s/6qp0vo/at_least_one_vim_trick_you_might_not_know#c_duinox
+set nrformats-=octal
+
 set wrap " wrap lines
 
 set history=1000         " remember more commands and search history
@@ -156,6 +160,10 @@ au FileType c,cpp let $MANSECT="3,2,7,5,1,8"
 au FileType markdown set tabstop=4
 au FileType markdown set softtabstop=4
 au FileType markdown set shiftwidth=4
+
+au FileType kotlin set tabstop=4
+au FileType kotlin set softtabstop=4
+au FileType kotlin set shiftwidth=4
 
 au FileType go set tabstop=4
 au FileType go set softtabstop=4
@@ -394,9 +402,7 @@ set nojoinspaces
 " enable mouse clicking (now that the vim package has everything)
 "set mouse=a
 
-let g:ycm_rust_src_path = "/home/jer/code/rust/rust/src"
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py', '/Users/jrediger/mozilla/src/mozilla-central/.ycm_extra_conf.py', '/Users/jrediger/mozilla/src/gecko/.ycm_extra_conf.py', '!*']
-let g:ycm_server_python_interpreter = 'python'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_auto_trigger=0
@@ -434,7 +440,11 @@ let g:tagbar_type_rust = {
     \]
     \}
 
+
+" add these lines to rustfmt on save and not show the youcompleteme
+" preview scratch
+let g:rustfmt_autosave = 1
+set completeopt-=preview
+
 " disable Shift-K. I almost never need it, pressing it only by accident
 map <S-k> <Nop>
-
-let g:rust_doc#downloaded_rust_doc_dir = "~/.rustup/toolchains/stable-x86_64-apple-darwin"

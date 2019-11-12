@@ -35,7 +35,7 @@ Plugin 'jtai/vim-githublink'
 Plugin 'tpope/vim-ragtag'
 "Plugin 'scrooloose/syntastic'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'valloric/YouCompleteMe'
+"Plugin 'valloric/YouCompleteMe'
 Plugin 'vim-scripts/a.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
@@ -64,7 +64,7 @@ set wrap " wrap lines
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn,.hg
+set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn,.hg,*.xcodeproj
 
 set pastetoggle=<F2>
 
@@ -138,7 +138,7 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.c,*.cpp,*.cc,*.h,*.rs :call StripTrailingWhitespaces()
-autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.jsm,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py :call StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.jsm,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py,*.swift :call StripTrailingWhitespaces()
 autocmd BufWritePre *.scss,*.erb,Rakefile,*.yml :call StripTrailingWhitespaces()
 autocmd BufWritePre *.rst :call StripTrailingWhitespaces()
 " make this function accessible
@@ -181,6 +181,10 @@ au FileType java set tabstop=4
 au FileType java set softtabstop=4
 au FileType java set shiftwidth=4
 au FileType java set expandtab
+
+au FileType swift set tabstop=4
+au FileType swift set softtabstop=4
+au FileType swift set shiftwidth=4
 
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
@@ -450,4 +454,7 @@ let g:tagbar_type_rust = {
 " disable Shift-K. I almost never need it, pressing it only by accident
 map <S-k> <Nop>
 
-let g:NERDCustomDelimiters = { 'kotlin': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' } }
+let g:NERDCustomDelimiters = {
+      \ 'kotlin': { 'left': '//', 'leftAlt': '/**', 'rightAlt': '*/' },
+      \ 'swift': { 'left': '///' }
+  \}

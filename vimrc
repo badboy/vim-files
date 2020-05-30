@@ -138,7 +138,7 @@ function! StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.c,*.cpp,*.cc,*.h,*.rs :call StripTrailingWhitespaces()
-autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.jsm,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py,*.swift :call StripTrailingWhitespaces()
+autocmd BufWritePre *.rb,*.erl,*.tex,*.xml,*.java,*.js,*.jsm,*.php,*.pde,*.css,*.tpl,*.txt,PKGBUILD,*.ronn,*.hs,*.go,*.clj,*.py,*.swift,*.lua :call StripTrailingWhitespaces()
 autocmd BufWritePre *.scss,*.erb,Rakefile,*.yml :call StripTrailingWhitespaces()
 autocmd BufWritePre *.rst :call StripTrailingWhitespaces()
 " make this function accessible

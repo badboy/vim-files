@@ -23,8 +23,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
-Plug 'Lokaltog/vim-powerline'
-Plug 'msanders/snipmate.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tristen/vim-sparkup'
 Plug 'mileszs/ack.vim'
@@ -42,6 +43,7 @@ Plug 'keith/swift.vim'
 Plug 'udalov/kotlin-vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -61,10 +63,11 @@ set hidden
 set nrformats-=octal
 
 set wrap " wrap lines
+set tags^=.git/tags;~
 
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn,.hg,*.xcodeproj
+set wildignore=*.swp,*.bak,*.pyc,*.rbc,*.class,*.hi,*.o,*.mmo,.git,.svn,.hg,*.xcodeproj,third_party
 
 set pastetoggle=<F2>
 
@@ -185,6 +188,10 @@ au FileType java set expandtab
 au FileType swift set tabstop=4
 au FileType swift set softtabstop=4
 au FileType swift set shiftwidth=4
+
+au FileType cs set tabstop=4
+au FileType cs set softtabstop=4
+au FileType cs set shiftwidth=4
 
 au BufNewFile,BufRead Capfile set filetype=ruby
 au BufNewFile,BufRead Guardfile set filetype=ruby
@@ -510,9 +517,9 @@ set nojoinspaces
 " enable mouse clicking (now that the vim package has everything)
 "set mouse=a
 
-set statusline+=%#warningmsg#
-set statusline+=%*
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+"set statusline+=%#warningmsg#
+"set statusline+=%*
+"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 let g:tagbar_left = 1
 let g:tagbar_type_rust = {

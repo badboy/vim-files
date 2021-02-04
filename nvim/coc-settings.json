@@ -1,0 +1,7 @@
+{
+  "rust-analyzer.notifications.cargoTomlNotFound": false,
+  "rust-analyzer.diagnostics.enable": true,
+  "rust-analyzer.inlayHints.chainingHints": true,
+  "rust-analyzer.checkOnSave.enable": false,
+  "rust-analyzer.files.exclude": ["/Users/jer/mozilla/src/gecko"]
+}
